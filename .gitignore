@@ -1,3 +1,6 @@
+# Intermediate models saved during training
+model_epoch*.h5
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
