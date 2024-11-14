@@ -1,5 +1,7 @@
-# Intermediate models saved during training
+# Intermediate files created during training
 model_epoch*.h5
+best.keras
+untitled_project/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
