@@ -15,3 +15,9 @@ The SPECIAL_CONSIDERATIONS column should either be dummied or, more likely, drop
  'nadam': 0.7346938848495483,
  'rmsprop': 0.736093282699585,
  'sgd': 0.7366763949394226}
+ 
+ 
+ 
+ 
+ 
+ {'layer_count': 10, 'activation_0000': 'gelu', 'units______0000': 30, 'activation_0001': 'mish', 'units______0001': 60, 'activation_0002': 'mish', 'units______0002': 60, 'activation_0003': 'relu6', 'units______0003': 30, 'activation_0004': 'mish', 'units______0004': 30, 'activation_0005': 'mish', 'units______0005': 30, 'activation_0006': 'silu', 'units______0006': 30, 'activation_0007': 'gelu', 'units______0007': 30, 'activation_0008': 'relu6', 'units______0008': 30, 'activation_0009': 'tanh', 'units______0009': 60, 'tuner/epochs': 7, 'tuner/initial_epoch': 0, 'tuner/bracket': 0, 'tuner/round': 0}
