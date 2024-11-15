@@ -1,30 +1,9 @@
-# deep-learning-challenge
-Data Analytics Boot Camp Module 21
-
-## Contents
-
-- **AlphabetSoupCharity.ipynb**: My solution to Steps 1-2 of the challenge, with basic cleanup and a naive model.
-- **AlphabetSoupCharity.h5**: Model created by the above
-- **AlphabetSoupCharity_Optimization.ipynb**: My solution to Step 3 of the challenge, adjusting the data and model creation to try to improve accuracy.
-- **AlphabetSoupCharity_Optimization.h5**: Model created by the above "optimized" notebook
-- **AlphabetSoupCharity_Optimization.keras**: More modern format of model created by the above "optimized" notebook
-- **report.md**: My solution to Step 4 of the Challenge, the written report
-- **images/\***: Images referred to by the report
-- **Starter_Code.ipynb**: Code provided for the challenge, preserved for reference
-
-## Instructions
-
-With either a Google Colab connection, or a standard environment from class (including TensorFlow), load AlphabetSoupCharity_Optimization.ipynb and run all cells. This will fetch and clean the data, then create a new model. Note the 3rd block has several flags and parameters you can adjust. Creating a good model is still a rather interactive experience.
-
-
-# Report
-
-## Overview
+# Overview
 The purpose of this analysis is to describe an effort to use deep learning to create a neural network to predict loan success, based on Alphabet Soup's data describing previous loans.
 
-## Results
+# Results
 
-### Preprocessing (Data Cleaning)
+## Preprocessing (Data Cleaning)
 
 **What variable(s) are the target(s) for your model?**: Only the IS_SUCCESSFUL variable is a target.
 
@@ -51,7 +30,11 @@ Adding New Columns:
 1. INCOME_MID: This is derived from the INCOME_AMT column, converting it from categorical to numeric. It did not help.
 1. INCOME_ASK_RATIO: The ratio of INCOME_MID to ASK_AMT. It did not help.
 
-### Compiling, Training, and Evaluating the Model
+This table shows the accuracy impact of changes discussed above:
+![Accuracy With Various Data Cleanup](images/CleanupAccuracy.png)
+
+
+## Compiling, Training, and Evaluating the Model
 
 The final neural network contained 5 dense layers total:
 1. 41 neurons with "gelu" activation
@@ -62,12 +45,12 @@ The final neural network contained 5 dense layers total:
 
 Note the activations were selected based one some Keras Tuner runs, but very similar results were attained with other activations. I do not actually know what the activations means and cannot comment on which would be more appropriate, except for "sigmoid" which is explicitly meant to indicate the probability of matching 1 of 2 possible targets.
 
-I was not able to reach the target 75% accuracy; I reached only 73.5% accuracy. I actually reached near this accuracy fairly quickly, mainly by using a nontrivial network (layers with various activiations and 30+ units each) and allowing more Application Types and Classifications to be categorized as described above.
+I was not able to reach the target 75% accuracy; I reached only 73.6% accuracy. I actually reached near this accuracy fairly quickly, mainly by using a nontrivial network (layers with various activiations and 30+ units each) and allowing more Application Types and Classifications to be categorized as described above.
 
 This is the list of what I tried for the model itself:
 
 **Re-Splitting**:
-Subjectively, the accuracy seemed "stuck" at 73.4% for a while and I wondered if my train_test_split() call happened to produce imbalanced training and test sets. I tried several other seed values without significantly impacting accuracy, effectively proving myself wrong.
+Subjectively, the accuracy seemed "stuck" at 73.6% for a while and I wondered if my train_test_split() call happened to produce imbalanced training and test sets. I tried several other seed values without significantly impacting accuracy, effectively proving myself wrong.
 
 I also added code to show the values_counts() for each solumn in the final training and test sets, to get a rough estimate of whether the split was good.
 
@@ -97,10 +80,10 @@ I also tried alternating between optimizers in a loop, training incrementally. A
 **Adjusting Learning Rate**:
 Optimizers can take a Learning Rate, which more-or-less controls how big a change to make, so I tried training incrementally while varying learning rate. I hoped to get the training algorithm to "jump" past whatever caused it to top out below 74% accuracy, or to slowly improve from there. I don't think it helped.
 
-## Summary
+# Summary
 
-### Overall
-The model, saved as AlphabetSoupCharity_Optimization.h5 and AlphabetSoupCharity_Optimization.keras is 73.5% accurate. This doesn't seem very helpful since about half of loans are successful anyway, so the model isn't much better than a coin flip. I do not recommend relying on this model.
+## Overall
+The model, saved as AlphabetSoupCharity_Optimization.h5 and AlphabetSoupCharity_Optimization.keras is 73.6% accurate. This doesn't seem very helpful since about half of loans are successful anyway, so the model isn't much better than a coin flip. I do not recommend relying on this model.
 
-### How to Improve the Model:
+## How to Improve the Model:
 Trying different metrics, optimizers, and learning rates through Keras Tuner might produce better results than my hard-coded approach. But I suspect that my overall approach simply will not reach 75% with a fair train/test split. It may require different layer types or deeper customization of the dense layers and activations.
